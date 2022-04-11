@@ -1,0 +1,18 @@
+object Dependencies {
+    const val SPRING_VALIDATION = "org.springframework.boot:spring-boot-starter-validation"
+    const val WEBFLUX = "org.springframework.boot:spring-boot-starter-webflux"
+    const val KOTLIN_JACKSON = "com.fasterxml.jackson.module:jackson-module-kotlin"
+    const val COROUTINE_REACTOR_EXTENSION = "io.projectreactor.kotlin:reactor-kotlin-extensions"
+    const val COROUTINE_REACTOR = "org.jetbrains.kotlinx:kotlinx-coroutines-reactor"
+    const val KOTLIN_REFLECT = "org.jetbrains.kotlin:kotlin-reflect"
+    const val KOTLIN_STDLIB = "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    const val SPRING_BOOT_TEST = "org.springframework.boot:spring-boot-starter-test"
+    const val ACTUATOR = "org.springframework.boot:spring-boot-starter-actuator"
+    const val REACTIVE_JDSL = "com.linecorp.kotlin-jdsl:spring-data-kotlin-jdsl-hibernate-reactive:${DependencyVersions.JDSL_VERSION}"
+    const val REACTIVE_MYSQL = "io.vertx:vertx-mysql-client:${DependencyVersions.REACTIVE_MYSQL_VERSION}"
+    const val REACTIVE_HIBERNATE = "org.hibernate.reactive:hibernate-reactive-core:${DependencyVersions.HIBERNATE_REACTIVE_VERSION}"
+    const val MUTINY_KOTLIN = "io.smallrye.reactive:mutiny-kotlin:${DependencyVersions.MUTINY_VERSION}"
+    const val MUTINY_REACTOR = "io.smallrye.reactive:mutiny-reactor:${DependencyVersions.MUTINY_VERSION}"
+    const val EMBEDDED_MYSQL = "com.wix:wix-embedded-mysql:${DependencyVersions.EMBEDDED_MYSQL_VERSION}"
+    const val CONFIGURATION_PROCESSOR = "org.springframework.boot:spring-boot-configuration-processor"
+}
