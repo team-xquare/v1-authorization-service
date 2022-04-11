@@ -4,4 +4,5 @@ object DependencyVersions {
     const val HIBERNATE_REACTIVE_VERSION = "1.1.3.Final"
     const val MUTINY_VERSION = "1.4.0"
     const val JDSL_VERSION = "2.0.1.RELEASE"
+    const val KTLINT_VERSION = "0.44.0"
 }

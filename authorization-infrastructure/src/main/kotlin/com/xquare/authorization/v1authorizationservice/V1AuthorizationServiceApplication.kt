@@ -1,4 +1,4 @@
-package com.xquare.authorization.v1authorizationservice
+package com.xquare.authorization.v1authorizationservice.
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
