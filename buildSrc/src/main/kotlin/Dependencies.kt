@@ -15,4 +15,5 @@ object Dependencies {
     const val MUTINY_REACTOR = "io.smallrye.reactive:mutiny-reactor:${DependencyVersions.MUTINY_VERSION}"
     const val EMBEDDED_MYSQL = "com.wix:wix-embedded-mysql:${DependencyVersions.EMBEDDED_MYSQL_VERSION}"
     const val CONFIGURATION_PROCESSOR = "org.springframework.boot:spring-boot-configuration-processor"
+    const val KTLINT = "com.pinterest:ktlint:${DependencyVersions.KTLINT_VERSION}"
 }
