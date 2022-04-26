@@ -23,7 +23,7 @@ dependencies {
     testImplementation(Dependencies.COROUTINE_TEST)
     testImplementation(Dependencies.H2)
 
-    implementation(project(":authorization-domain"))
+    implementation(project(":authentication-domain"))
 }
 
 kapt {
