@@ -2,7 +2,6 @@ package com.xquare.authentication.v1authenticationservice.authority
 
 import com.xquare.authentication.v1authenticationservice.EqualsTestUtil
 import com.xquare.authentication.v1authenticationservice.RepositoryIntegrationTest
-import com.xquare.authentication.v1authenticationservice.authority.AuthorityEntity
 import com.xquare.authentication.v1authenticationservice.authority.accessmanagement.UserAccessManagementEntity
 import com.xquare.authentication.v1authenticationservice.authority.accessmanagement.repositories.UserAccessManagementRepository
 import com.xquare.authentication.v1authenticationservice.authority.repositories.AuthorityRepository
@@ -47,7 +46,7 @@ internal class UserAccessManagementEntityTest(
         userAccessManagementRepository.save(userAccessManagementToSave).awaitSingle()
 
         val userAccessManagementFromDB =
-            userAccessManagementRepository.findById(userAccessManagementToSave.id!!).awaitSingle()
+            userAccessManagementRepository.findById(userAccessManagementToSave.id).awaitSingle()
 
         EqualsTestUtil.isEqualTo(userAccessManagementToSave, userAccessManagementFromDB)
     }

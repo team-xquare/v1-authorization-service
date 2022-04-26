@@ -6,9 +6,8 @@ import org.springframework.core.convert.converter.Converter
 import org.springframework.data.convert.ReadingConverter
 import org.springframework.data.convert.WritingConverter
 
-
 @WritingConverter
-class UUIDToByteArrayConverter: Converter<UUID, ByteArray> {
+class UUIDToByteArrayConverter : Converter<UUID, ByteArray> {
 
     override fun convert(source: UUID): ByteArray {
         val uuidByteBuffer = ByteBuffer.wrap(ByteArray(16))
@@ -19,7 +18,7 @@ class UUIDToByteArrayConverter: Converter<UUID, ByteArray> {
 }
 
 @ReadingConverter
-class ByteArrayToUUIDConverter: Converter<ByteArray, UUID> {
+class ByteArrayToUUIDConverter : Converter<ByteArray, UUID> {
     override fun convert(source: ByteArray): UUID {
         val uuidByteBuffer = ByteBuffer.wrap(source)
         return UUID(uuidByteBuffer.long, uuidByteBuffer.long)

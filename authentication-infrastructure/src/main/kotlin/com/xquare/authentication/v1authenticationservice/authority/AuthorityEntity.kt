@@ -8,8 +8,10 @@ import org.springframework.data.relational.core.mapping.Table
 @Table("tbl_authority")
 class AuthorityEntity(
     @Id
-    private var id: UUID = UUID(0, 0),
+    val id: UUID = UUID.randomUUID(),
     val name: String,
-    val description: String,
-    val state: AuthorityState
-) : BaseR2DBCEntity()
+    val description: String
+) : BaseR2DBCEntity() {
+    var state: AuthorityState = AuthorityState.CREATE_PENDING
+        private set
+}

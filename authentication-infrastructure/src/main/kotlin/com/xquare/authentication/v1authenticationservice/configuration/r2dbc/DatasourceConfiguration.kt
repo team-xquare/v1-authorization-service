@@ -44,5 +44,4 @@ class DatasourceConfiguration(
     override fun getCustomConverters(): List<Any> {
         return listOf(UUIDToByteArrayConverter(), ByteArrayToUUIDConverter())
     }
-
 }

@@ -4,5 +4,5 @@ import org.springframework.data.annotation.Version
 
 abstract class BaseR2DBCEntity {
     @Version
-    protected var version: Int = 0
+    private var version: Int = 0
 }
