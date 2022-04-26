@@ -1,0 +1,9 @@
+package com.xquare.authorization.v1authorizationservice.authority.accessmanagement.repositories
+
+import com.xquare.authorization.v1authorizationservice.authority.accessmanagement.UserAccessManagementEntity
+import java.util.UUID
+import org.springframework.data.repository.reactive.ReactiveCrudRepository
+import org.springframework.stereotype.Repository
+
+@Repository
+interface UserAccessManagementRepository : ReactiveCrudRepository<UserAccessManagementEntity, UUID>

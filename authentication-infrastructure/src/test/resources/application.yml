@@ -1,0 +1,43 @@
+spring:
+  r2dbc:
+    username: test
+    password: test
+    url: r2dbc:h2:mem://in-memory/test
+
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+    date-format: yyyy-MM-dd'T'HH:mm:ss
+    time-zone: Asia/Seoul
+  redis:
+    host: localhost
+    password:
+    port: 6379
+    username:
+  application:
+    name: user-service-v1
+  sleuth:
+    sampler:
+      probability: 1
+  zipkin:
+    base-url: http://localhost:9411
+
+server:
+  port: 8080
+  shutdown: graceful
+
+logging:
+  level:
+    io:
+      r2dbc:
+        h2: TRACE
+cloud:
+  aws:
+    credentials:
+      access-key: sdaf
+      secret-key: sdaf
+    region:
+      static: ap-northeast-2
+    # when we run spring cloud on EC2, it starts CloudFormation setting. If we don't, our application doesn't start
+    # So I turn of this setting
+    stack:
+      auto: false

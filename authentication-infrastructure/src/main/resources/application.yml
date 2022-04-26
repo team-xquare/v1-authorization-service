@@ -1,0 +1,49 @@
+spring:
+  r2dbc:
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    url: r2dbc:${DBMS}://${DB_HOST}:${DB_PORT}/${DB_NAME}?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Seoul
+
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+    date-format: yyyy-MM-dd'T'HH:mm:ss
+    time-zone: Asia/Seoul
+  redis:
+    host: ${REDIS_HOST}
+    password: ${REDIS_PASSWORD}
+    port: ${REDIS_PORT}
+    username: ${REDIS_USERNAME}
+  application:
+    name: user-service-v1
+  sleuth:
+    sampler:
+      probability: 1
+  zipkin:
+    base-url: ${ZIPKIN_URL}
+
+server:
+  port: ${SERVER_PORT}
+  shutdown: graceful
+
+cloud:
+  aws:
+    credentials:
+      access-key: ${AWS_ACCESS_KEY}
+      secret-key: ${AWS_SECRET_KEY}
+    region:
+      static: ${AWS_REGION}
+    # when we run spring cloud on EC2, it starts CloudFormation setting. If we don't, our application doesn't start
+    # So I turn of this setting
+    stack:
+      auto: false
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: local
+  datasource:
+    show-sql: true
+    format-sql: true
+    highlight-sql: true

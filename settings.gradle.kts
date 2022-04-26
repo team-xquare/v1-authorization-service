@@ -1,3 +1,3 @@
 rootProject.name = "v1-authorization-service"
-include("authorization-infrastructure")
-include("authorization-domain")
+include("authentication-infrastructure")
+include("authentication-domain")
