@@ -1,4 +1,4 @@
-package com.xquare.v1userservice.annotations
+package com.xquare.authentication.domain.annotations
 
 @Retention(AnnotationRetention.RUNTIME)
 @Target(AnnotationTarget.CLASS)
