@@ -7,7 +7,6 @@ import com.xquare.authentication.v1authenticationservice.authority.accessmanagem
 import com.xquare.authentication.v1authenticationservice.authority.repositories.AuthorityRepository
 import java.util.UUID
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.reactor.awaitSingle
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -26,7 +25,7 @@ internal class UserAccessManagementEntityTest(
         val userAccessManagementToSave = buildUserAccessManagement(UUID.randomUUID())
 
         assertThrows<DataIntegrityViolationException> {
-            userAccessManagementRepository.save(userAccessManagementToSave).awaitSingle()
+            userAccessManagementRepository.save(userAccessManagementToSave)
         }
     }
 
@@ -34,21 +33,21 @@ internal class UserAccessManagementEntityTest(
     fun updateSuccessTest() = runTest {
         val savedAuthority = saveAuthoritySetup()
         val userAccessManagementToSave = buildUserAccessManagement(savedAuthority.id)
-        userAccessManagementRepository.save(userAccessManagementToSave).awaitSingle()
+        userAccessManagementRepository.save(userAccessManagementToSave)
 
-        userAccessManagementRepository.save(userAccessManagementToSave).awaitSingle()
+        userAccessManagementRepository.save(userAccessManagementToSave)
     }
 
     @Test
     fun findByIdSuccessTest() = runTest {
         val savedAuthority = saveAuthoritySetup()
         val userAccessManagementToSave = buildUserAccessManagement(savedAuthority.id)
-        userAccessManagementRepository.save(userAccessManagementToSave).awaitSingle()
+        userAccessManagementRepository.save(userAccessManagementToSave)
 
         val userAccessManagementFromDB =
-            userAccessManagementRepository.findById(userAccessManagementToSave.id).awaitSingle()
+            userAccessManagementRepository.findById(userAccessManagementToSave.id)
 
-        EqualsTestUtil.isEqualTo(userAccessManagementToSave, userAccessManagementFromDB)
+        EqualsTestUtil.isEqualTo(userAccessManagementToSave, userAccessManagementFromDB!!)
     }
 
     private fun buildUserAccessManagement(authorityId: UUID) =
