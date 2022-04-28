@@ -1,6 +1,7 @@
 package com.xquare.authentication.v1authenticationservice.configuration.r2dbc.converter
 
-import java.nio.ByteBuffer
+import com.xquare.authentication.v1authenticationservice.configuration.utils.UUIDUtils.toByteArray
+import com.xquare.authentication.v1authenticationservice.configuration.utils.UUIDUtils.toUUID
 import java.util.UUID
 import org.springframework.core.convert.converter.Converter
 import org.springframework.data.convert.ReadingConverter
@@ -10,17 +11,13 @@ import org.springframework.data.convert.WritingConverter
 class UUIDToByteArrayConverter : Converter<UUID, ByteArray> {
 
     override fun convert(source: UUID): ByteArray {
-        val uuidByteBuffer = ByteBuffer.wrap(ByteArray(16))
-        uuidByteBuffer.putLong(source.mostSignificantBits)
-        uuidByteBuffer.putLong(source.leastSignificantBits)
-        return uuidByteBuffer.array()
+        return source.toByteArray()
     }
 }
 
 @ReadingConverter
 class ByteArrayToUUIDConverter : Converter<ByteArray, UUID> {
     override fun convert(source: ByteArray): UUID {
-        val uuidByteBuffer = ByteBuffer.wrap(source)
-        return UUID(uuidByteBuffer.long, uuidByteBuffer.long)
+        return source.toUUID()
     }
 }
