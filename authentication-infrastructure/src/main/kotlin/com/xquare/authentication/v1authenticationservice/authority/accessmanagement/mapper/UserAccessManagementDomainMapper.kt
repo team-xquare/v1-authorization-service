@@ -1,6 +1,6 @@
 package com.xquare.authentication.v1authenticationservice.authority.accessmanagement.mapper
 
-import com.xquare.authentication.domain.useraccessmanagement.UserAccessManagement
+import com.xquare.authentication.domain.authority.useraccessmanagement.UserAccessManagement
 import com.xquare.authentication.v1authenticationservice.authority.accessmanagement.UserAccessManagementEntity
 import org.mapstruct.Mapper
 import org.mapstruct.ReportingPolicy
