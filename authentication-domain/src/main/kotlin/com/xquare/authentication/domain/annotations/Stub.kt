@@ -1,4 +1,4 @@
-package com.xquare.v1userservice.annotations
+package com.xquare.authentication.domain.annotations
 
 import java.lang.annotation.Inherited
 

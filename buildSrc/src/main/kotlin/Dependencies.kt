@@ -1,8 +1,11 @@
 object Dependencies {
+    const val SPRING_CLOUD = "org.springframework.cloud:spring-cloud-dependencies:${DependencyVersions.SPRING_CLOUD_VERSION}"
     const val SPRING_VALIDATION = "org.springframework.boot:spring-boot-starter-validation"
     const val WEBFLUX = "org.springframework.boot:spring-boot-starter-webflux"
     const val KOTLIN_JACKSON = "com.fasterxml.jackson.module:jackson-module-kotlin"
     const val COROUTINE_REACTOR_EXTENSION = "io.projectreactor.kotlin:reactor-kotlin-extensions"
+    const val COROUTINE_JDK = "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:${DependencyVersions.COROUTINE_VERSION}"
+    const val KOTLINX_COROUTINE = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${DependencyVersions.COROUTINE_VERSION}"
     const val COROUTINE_REACTOR = "org.jetbrains.kotlinx:kotlinx-coroutines-reactor"
     const val KOTLIN_REFLECT = "org.jetbrains.kotlin:kotlin-reflect:${DependencyVersions.COROUTINE_VERSION}"
     const val KOTLIN_STDLIB = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${DependencyVersions.COROUTINE_VERSION}"
@@ -17,4 +20,9 @@ object Dependencies {
     const val COROUTINE_TEST = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${DependencyVersions.COROUTINE_VERSION}"
     const val MAPSTRUCT = "org.mapstruct:mapstruct:${DependencyVersions.MAPSTRUCT_VERSION}"
     const val MAPSTRUCT_APT = "org.mapstruct:mapstruct-processor:${DependencyVersions.MAPSTRUCT_VERSION}"
+    const val REACTOR_KAFKA = "io.projectreactor.kafka:reactor-kafka:${DependencyVersions.REACTOR_KAFKA_VERSION}"
+    const val SPRING_KAFKA = "org.springframework.kafka:spring-kafka"
+    const val ZIPKIN = "org.springframework.cloud:spring-cloud-sleuth-zipkin"
+    const val STARTER_SLEUTH = "org.springframework.cloud:spring-cloud-starter-sleuth"
+    const val SPRING_RABBIT = "org.springframework.amqp:spring-rabbit:${DependencyVersions.RABBIT_VERSION}"
 }

@@ -1,5 +1,6 @@
 package com.xquare.authentication.v1authenticationservice.authority
 
+import com.xquare.authentication.domain.authority.AuthorityState
 import com.xquare.authentication.v1authenticationservice.configuration.r2dbc.BaseR2DBCEntity
 import java.util.UUID
 import org.springframework.data.annotation.Id

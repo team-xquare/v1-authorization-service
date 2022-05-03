@@ -11,7 +11,4 @@ class UserAccessManagementEntity(
     val id: UUID = UUID.randomUUID(),
     val userId: UUID,
     val authorityId: UUID
-) : BaseR2DBCEntity() {
-    var state: UserAccessManagementState = UserAccessManagementState.CREATE_PENDING
-        private set
-}
+) : BaseR2DBCEntity()
