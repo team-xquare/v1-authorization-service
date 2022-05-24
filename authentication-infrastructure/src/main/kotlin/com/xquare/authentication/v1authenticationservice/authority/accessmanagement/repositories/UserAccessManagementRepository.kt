@@ -1,9 +1,0 @@
-package com.xquare.authentication.v1authenticationservice.authority.accessmanagement.repositories
-
-import com.xquare.authentication.v1authenticationservice.authority.accessmanagement.UserAccessManagementEntity
-import java.util.UUID
-import org.springframework.data.repository.kotlin.CoroutineCrudRepository
-import org.springframework.stereotype.Repository
-
-@Repository
-interface UserAccessManagementRepository : CoroutineCrudRepository<UserAccessManagementEntity, UUID>

@@ -22,7 +22,7 @@ subprojects {
 }
 
 allprojects {
-    group = "com.xquare.authentication"
+    group = "com.xquare.authorization"
     version = "0.0.1-SNAPSHOT"
 
     tasks {
