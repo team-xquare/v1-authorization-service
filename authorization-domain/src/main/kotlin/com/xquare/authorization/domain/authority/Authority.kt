@@ -7,6 +7,5 @@ import java.util.UUID
 class Authority(
     val id: UUID = UUID.randomUUID(),
     val name: String,
-    val description: String,
-    val state: AuthorityState
+    val description: String
 )
