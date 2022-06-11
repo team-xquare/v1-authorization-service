@@ -1,6 +1,5 @@
 package com.xquare.authorization.v1authorizationservice.authority.repositories
 
-import com.xquare.authorization.domain.authority.AuthorityState
 import com.xquare.authorization.v1authorizationservice.authority.AuthorityEntity
 import java.util.UUID
 import org.springframework.data.r2dbc.repository.Query

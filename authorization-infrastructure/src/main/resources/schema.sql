@@ -3,7 +3,6 @@ CREATE TABLE IF NOT EXISTS `tbl_authority` (
     `name` VARCHAR(20) NOT NULL,
     `description` VARCHAR(255) NOT NULL,
     `version` INT NOT NULL,
-    `state` VARCHAR(20) NOT NULL,
     PRIMARY KEY (`id`)
 );
 
