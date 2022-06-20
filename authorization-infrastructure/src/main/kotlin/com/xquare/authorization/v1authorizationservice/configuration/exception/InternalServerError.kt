@@ -4,4 +4,4 @@ import com.xquare.authorization.domain.exception.BaseException
 
 class InternalServerError(
     errorMessage: String?
-): BaseException(errorMessage, 500)
+) : BaseException(errorMessage, 500)
