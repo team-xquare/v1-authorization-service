@@ -12,4 +12,3 @@ class AuthorityEntity(
     val name: String,
     val description: String
 ) : BaseR2DBCEntity()
-
