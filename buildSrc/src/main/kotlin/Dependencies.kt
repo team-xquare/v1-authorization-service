@@ -20,9 +20,4 @@ object Dependencies {
     const val COROUTINE_TEST = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${DependencyVersions.COROUTINE_VERSION}"
     const val MAPSTRUCT = "org.mapstruct:mapstruct:${DependencyVersions.MAPSTRUCT_VERSION}"
     const val MAPSTRUCT_APT = "org.mapstruct:mapstruct-processor:${DependencyVersions.MAPSTRUCT_VERSION}"
-    const val REACTOR_KAFKA = "io.projectreactor.kafka:reactor-kafka:${DependencyVersions.REACTOR_KAFKA_VERSION}"
-    const val SPRING_KAFKA = "org.springframework.kafka:spring-kafka"
-    const val ZIPKIN = "org.springframework.cloud:spring-cloud-sleuth-zipkin"
-    const val STARTER_SLEUTH = "org.springframework.cloud:spring-cloud-starter-sleuth"
-    const val SPRING_RABBIT = "org.springframework.amqp:spring-rabbit:${DependencyVersions.RABBIT_VERSION}"
 }
