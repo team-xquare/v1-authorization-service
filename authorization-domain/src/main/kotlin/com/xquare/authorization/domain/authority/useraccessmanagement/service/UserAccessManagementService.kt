@@ -23,7 +23,7 @@ class UserAccessManagementService(
         val userOwnAccessManagementMap = getUserAuthoritySpi.getUserAuthority(userId).associateBy { it.id }
         val basicAuthorities = authorityRepositorySpi.getBaseUserAuthorities()
         val userAccessManagementList = basicAuthorities
-            .filterAlreadyOwnAuthority(userOwnAccessManagementMap)
+            .filterAlreadyUsersAuthroity(userOwnAccessManagementMap)
             .map { it.toUserAccessManagement(userId) }
 
         userAccessManagementRepositorySpi.saveAllUserAccessManagement(userAccessManagementList)
@@ -36,7 +36,7 @@ class UserAccessManagementService(
             authorityId = this.id
         )
 
-    private fun List<Authority>.filterAlreadyOwnAuthority(ownAuthorityMap: Map<UUID, Authority>) =
+    private fun List<Authority>.filterAlreadyUsersAuthroity(ownAuthorityMap: Map<UUID, Authority>) =
         this.filter { !ownAuthorityMap.containsKey(it.id) }
 
     override suspend fun getUserAuthorityList(userId: UUID): AuthorityListResponse {
