@@ -1,6 +1,7 @@
 package com.xquare.authorization.v1authorizationservice.configuration.exception
 
 import com.xquare.authorization.domain.exception.BaseException
+import com.xquare.authorization.v1authorizationservice.configuration.validate.BadRequestException
 import org.springframework.boot.autoconfigure.web.WebProperties
 import org.springframework.boot.autoconfigure.web.reactive.error.AbstractErrorWebExceptionHandler
 import org.springframework.boot.web.reactive.error.ErrorAttributes
@@ -13,6 +14,7 @@ import org.springframework.web.reactive.function.server.RouterFunction
 import org.springframework.web.reactive.function.server.RouterFunctions
 import org.springframework.web.reactive.function.server.ServerRequest
 import org.springframework.web.reactive.function.server.ServerResponse
+import org.springframework.web.server.ServerWebInputException
 import reactor.core.publisher.Mono
 
 @Order(-2)
@@ -39,6 +41,7 @@ class ErrorWebExchangeHandler(
     private fun handleError(request: ServerRequest): Mono<ServerResponse> =
         when (val throwable = super.getError(request)) {
             is BaseException -> buildErrorResponse(throwable)
+            is ServerWebInputException -> buildErrorResponse(BadRequestException("Missing Request Body"))
             else -> buildErrorResponse(InternalServerError(throwable.message))
         }
 
