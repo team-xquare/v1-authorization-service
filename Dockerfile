@@ -15,5 +15,5 @@ ENV DB_PASSWORD ${DB_PASSWORD}
 ARG DB_USERNAME
 ENV DB_USERNAME ${DB_USERNAME}
 
-ADD user-infrastructure/build/libs/*.jar app.jar
+ADD authorization-infrastructure/build/libs/*.jar app.jar
 ENTRYPOINT ["java", "-jar", "/app.jar"]
