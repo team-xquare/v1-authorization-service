@@ -14,6 +14,7 @@ import org.springframework.web.reactive.function.server.RouterFunction
 import org.springframework.web.reactive.function.server.RouterFunctions
 import org.springframework.web.reactive.function.server.ServerRequest
 import org.springframework.web.reactive.function.server.ServerResponse
+import org.springframework.web.server.ResponseStatusException
 import org.springframework.web.server.ServerWebInputException
 import reactor.core.publisher.Mono
 
@@ -42,6 +43,7 @@ class ErrorWebExchangeHandler(
         when (val throwable = super.getError(request)) {
             is BaseException -> buildErrorResponse(throwable)
             is ServerWebInputException -> buildErrorResponse(BadRequestException("Missing Request Body"))
+            is ResponseStatusException -> buildErrorResponse(RequestHandlerNotFoundException("${request.method()} ${request.path()} Handler Not Found"))
             else -> buildErrorResponse(InternalServerError(throwable.message))
         }
 
