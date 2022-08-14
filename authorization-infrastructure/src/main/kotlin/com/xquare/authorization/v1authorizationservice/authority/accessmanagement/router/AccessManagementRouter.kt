@@ -11,7 +11,7 @@ class AccessManagementRouter(
 ) {
     @Bean
     fun saveBaseAuthority() = coRouter {
-        "/authorities/access-management".nest {
+        "/authorities/access-management/basic".nest {
             POST("", userAuthorityHandler::createUserBaseAuthority)
         }
     }
