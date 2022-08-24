@@ -4,29 +4,24 @@ import com.xquare.authorization.domain.annotations.SagaStep
 import com.xquare.authorization.domain.authority.Authority
 import com.xquare.authorization.domain.authority.spi.AuthorityRepositorySpi
 import com.xquare.authorization.domain.authority.useraccessmanagement.UserAccessManagement
-import com.xquare.authorization.domain.authority.useraccessmanagement.api.GetUserAuthorityApi
-import com.xquare.authorization.domain.authority.useraccessmanagement.api.SaveUserBaseAuthorityApi
+import com.xquare.authorization.domain.authority.useraccessmanagement.api.AccessManagementService
 import com.xquare.authorization.domain.authority.useraccessmanagement.api.dtos.AuthorityListResponse
 import com.xquare.authorization.domain.authority.useraccessmanagement.api.dtos.AuthorityResponse
-import com.xquare.authorization.domain.authority.useraccessmanagement.spi.GetUserAuthoritySpi
-import com.xquare.authorization.domain.authority.useraccessmanagement.spi.UserAccessManagementRepositorySpi
 import java.util.UUID
 
 @SagaStep
-class UserAccessManagementService(
-    private val userAccessManagementRepositorySpi: UserAccessManagementRepositorySpi,
-    private val authorityRepositorySpi: AuthorityRepositorySpi,
-    private val getUserAuthoritySpi: GetUserAuthoritySpi,
-) : SaveUserBaseAuthorityApi, GetUserAuthorityApi {
+class AccessManagementService(
+    private val authorityRepositorySpi: AuthorityRepositorySpi
+) : AccessManagementService {
 
     override suspend fun saveBaseAuthority(userId: UUID) {
-        val userOwnAccessManagementMap = getUserAuthoritySpi.getUserAuthority(userId).associateBy { it.id }
+        val userOwnAccessManagementMap = authorityRepositorySpi.getUserAuthority(userId).associateBy { it.id }
         val basicAuthorities = authorityRepositorySpi.getBaseUserAuthorities()
         val userAccessManagementList = basicAuthorities
             .filterAlreadyUsersAuthority(userOwnAccessManagementMap)
             .map { it.toUserAccessManagement(userId) }
 
-        userAccessManagementRepositorySpi.saveAllUserAccessManagement(userAccessManagementList)
+        authorityRepositorySpi.saveAllUserAccessManagement(userAccessManagementList)
     }
 
     private fun Authority.toUserAccessManagement(userId: UUID) =
@@ -40,7 +35,7 @@ class UserAccessManagementService(
         this.filter { !ownAuthorityMap.containsKey(it.id) }
 
     override suspend fun getUserAuthorityList(userId: UUID): AuthorityListResponse {
-        val authorityList = getUserAuthoritySpi.getUserAuthority(userId)
+        val authorityList = authorityRepositorySpi.getUserAuthority(userId)
         return authorityList.toAuthorityListResponse()
     }
 
