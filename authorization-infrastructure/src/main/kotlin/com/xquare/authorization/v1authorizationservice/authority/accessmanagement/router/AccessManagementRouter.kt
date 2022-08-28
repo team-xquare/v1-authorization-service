@@ -10,9 +10,9 @@ class AccessManagementRouter(
     private val accessManagementHandler: AccessManagementHandler
 ) {
     @Bean
-    fun saveBaseAuthority() = coRouter {
-        "/authorities/access-management/basic".nest {
-            POST("", accessManagementHandler::createUserBaseAccessManagement)
+    fun accessManagementRouter() = coRouter {
+        "/authorities/access-management".nest {
+            POST("/basic", accessManagementHandler::createUserBaseAccessManagement)
             GET("/{userId}", accessManagementHandler::handleGetAuthorityList)
         }
     }
