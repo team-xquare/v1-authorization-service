@@ -27,6 +27,8 @@ dependencies {
     kapt(Dependencies.MAPSTRUCT_APT)
     implementation(Dependencies.MICROMETER)
     kapt(Dependencies.CONFIGURATION_PROCESSOR)
+    implementation(Dependencies.OPEN_API_UI)
+    implementation(Dependencies.OPEN_API_CORE)
     testImplementation(Dependencies.SPRING_BOOT_TEST)
     testImplementation(Dependencies.COROUTINE_TEST)
     testImplementation(Dependencies.H2)
