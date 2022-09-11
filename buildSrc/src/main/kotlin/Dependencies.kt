@@ -20,4 +20,6 @@ object Dependencies {
     const val COROUTINE_TEST = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${DependencyVersions.COROUTINE_VERSION}"
     const val MAPSTRUCT = "org.mapstruct:mapstruct:${DependencyVersions.MAPSTRUCT_VERSION}"
     const val MAPSTRUCT_APT = "org.mapstruct:mapstruct-processor:${DependencyVersions.MAPSTRUCT_VERSION}"
+    const val OPEN_API_UI = "org.springdoc:springdoc-openapi-webflux-ui:${DependencyVersions.OPEN_API_VERSION}"
+    const val OPEN_API_CORE = "org.springdoc:springdoc-openapi-webflux-core:${DependencyVersions.OPEN_API_VERSION}"
 }

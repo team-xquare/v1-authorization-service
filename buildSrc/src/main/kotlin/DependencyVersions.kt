@@ -6,5 +6,6 @@ object DependencyVersions {
     const val KTLINT_VERSION = "0.44.0"
     const val COROUTINE_VERSION = "1.6.0"
     const val MAPSTRUCT_VERSION = "1.4.2.Final"
+    const val OPEN_API_VERSION = "1.6.10"
     const val REACTOR_KAFKA_VERSION = "1.3.11"
 }
