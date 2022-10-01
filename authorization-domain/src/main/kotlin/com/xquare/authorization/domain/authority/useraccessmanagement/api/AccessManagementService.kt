@@ -5,5 +5,6 @@ import java.util.UUID
 
 interface AccessManagementService {
     suspend fun getUserAuthorityList(userId: UUID): AuthorityListResponse
-    suspend fun saveBaseAuthority(userId: UUID)
+    suspend fun saveBaseAccessManagement(userId: UUID)
+    suspend fun deleteBaseAccessManagement(userId: UUID)
 }

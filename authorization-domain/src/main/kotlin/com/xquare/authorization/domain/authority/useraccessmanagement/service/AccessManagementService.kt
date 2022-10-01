@@ -14,7 +14,7 @@ class AccessManagementService(
     private val authorityRepositorySpi: AuthorityRepositorySpi
 ) : AccessManagementService {
 
-    override suspend fun saveBaseAuthority(userId: UUID) {
+    override suspend fun saveBaseAccessManagement(userId: UUID) {
         val userOwnAccessManagementMap = authorityRepositorySpi.getUserAuthority(userId).associateBy { it.id }
         val basicAuthorities = authorityRepositorySpi.getBaseUserAuthorities()
         val userAccessManagementList = basicAuthorities
@@ -33,6 +33,11 @@ class AccessManagementService(
 
     private fun List<Authority>.filterAlreadyUsersAuthority(ownAuthorityMap: Map<UUID, Authority>) =
         this.filter { !ownAuthorityMap.containsKey(it.id) }
+
+    override suspend fun deleteBaseAccessManagement(userId: UUID) {
+        val basicAuthorities = authorityRepositorySpi.getBaseUserAuthorities()
+
+    }
 
     override suspend fun getUserAuthorityList(userId: UUID): AuthorityListResponse {
         val authorityList = authorityRepositorySpi.getUserAuthority(userId)
