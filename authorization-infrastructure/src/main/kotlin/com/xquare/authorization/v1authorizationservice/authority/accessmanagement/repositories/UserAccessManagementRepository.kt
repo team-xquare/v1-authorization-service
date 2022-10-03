@@ -6,4 +6,6 @@ import org.springframework.data.repository.kotlin.CoroutineCrudRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface UserAccessManagementRepository : CoroutineCrudRepository<UserAccessManagementEntity, UUID>
+interface UserAccessManagementRepository : CoroutineCrudRepository<UserAccessManagementEntity, UUID> {
+    suspend fun deleteAllByUserIdAndAuthorityIdIn(userId: UUID, authorityIds: List<UUID>)
+}

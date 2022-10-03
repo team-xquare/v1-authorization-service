@@ -4,9 +4,14 @@ import com.xquare.authorization.domain.authority.Authority
 import com.xquare.authorization.domain.authority.spi.AuthorityRepositorySpi
 import com.xquare.authorization.domain.authority.useraccessmanagement.UserAccessManagement
 import com.xquare.authorization.v1authorizationservice.authority.accessmanagement.mapper.UserAccessManagementDomainMapper
+import com.xquare.authorization.v1authorizationservice.authority.accessmanagement.repositories.UserAccessManagementRepository
 import com.xquare.authorization.v1authorizationservice.authority.mapper.AuthorityDomainMapper
 import com.xquare.authorization.v1authorizationservice.authority.repositories.AuthorityRepository
+import java.util.LinkedList
 import java.util.UUID
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.toCollection
 import kotlinx.coroutines.reactor.awaitSingle
 import org.springframework.data.r2dbc.core.R2dbcEntityOperations
 import org.springframework.stereotype.Repository
@@ -17,7 +22,7 @@ class AuthorityRepositorySpiImpl(
     private val authorityRepository: AuthorityRepository,
     private val authorityDomainMapper: AuthorityDomainMapper,
     private val userAccessManagementDomainMapper: UserAccessManagementDomainMapper,
-    private val entityOperations: R2dbcEntityOperations
+    private val accessManagementRepository: UserAccessManagementRepository
 ) : AuthorityRepositorySpi {
     companion object {
         private val DEFAULT_NAME_LIST = listOf("학생")
@@ -38,10 +43,14 @@ class AuthorityRepositorySpiImpl(
         val userAccessManagementEntityListToSave = userAccessManagements
             .map { userAccessManagementDomainMapper.userAccessManagementDomainToEntity(it) }
 
-        val savedUserAccessManagements =
-            userAccessManagementEntityListToSave.map { entityOperations.insert(it).awaitSingle() }
+        val savedUserAccessManagements = accessManagementRepository.saveAll(userAccessManagementEntityListToSave)
+            .toCollection(LinkedList())
 
         return savedUserAccessManagements
             .map { userAccessManagementDomainMapper.userAccessManagementEntityToDomain(it) }
+    }
+
+    override suspend fun deleteAllUserAccessManagement(userId: UUID, userAccessManagements: List<UUID>) {
+        accessManagementRepository.deleteAllByUserIdAndAuthorityIdIn(userId, userAccessManagements)
     }
 }

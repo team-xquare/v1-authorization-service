@@ -20,7 +20,7 @@ class AccessManagementHandler(
     suspend fun createUserBaseAccessManagement(serverRequest: ServerRequest): ServerResponse {
         val request = serverRequest.bodyToMono<UserBaseAuthorityRequest>().awaitSingle()
         requestBodyValidator.validate(request)
-        accessManagementService.saveBaseAuthority(request.userId)
+        accessManagementService.saveBaseAccessManagement(request.userId)
         return ServerResponse.created(URI.create("")).buildAndAwait()
     }
 
@@ -28,5 +28,11 @@ class AccessManagementHandler(
         val userId = UUID.fromString(serverRequest.pathVariable("userId"))
         val authorityList = accessManagementService.getUserAuthorityList(userId)
         return ServerResponse.ok().bodyValueAndAwait(authorityList)
+    }
+
+    suspend fun handleDeleteBaseAccessManagement(serverRequest: ServerRequest): ServerResponse {
+        val userId = UUID.fromString(serverRequest.pathVariable("userId"))
+        accessManagementService.deleteBaseAccessManagement(userId)
+        return ServerResponse.noContent().buildAndAwait()
     }
 }
