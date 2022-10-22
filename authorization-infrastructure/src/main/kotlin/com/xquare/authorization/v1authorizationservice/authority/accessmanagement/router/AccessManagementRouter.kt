@@ -100,6 +100,29 @@ class AccessManagementRouter(
                     )
                 ],
             )
+        ),
+        RouterOperation(
+            path = "/authorities/access-management/basic/{userId}",
+            method = [RequestMethod.DELETE],
+            produces = [MediaType.APPLICATION_JSON_VALUE],
+            consumes = [MediaType.APPLICATION_JSON_VALUE],
+            params = ["userId"],
+            operation = Operation(
+                operationId = "deleteBasicAuthorities",
+                summary = "Delete Basic Authorities",
+                description = "사용자가 가지고 있는 기본 권한을 삭제합니다. (보상 트랜잭션 API)",
+                parameters = [
+                    Parameter(
+                        name = "userId",
+                        description = "사용자 아이디",
+                        `in` = ParameterIn.PATH,
+                        allowEmptyValue = false,
+                        required = true
+                    )
+                ],
+                requestBody = RequestBody(content = []),
+                responses = [ApiResponse(responseCode = "204", description = "삭제 성공")],
+            )
         )
     )
     fun accessManagementRouters() = coRouter {
