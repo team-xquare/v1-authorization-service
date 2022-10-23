@@ -25,7 +25,7 @@ class AuthorityRepositorySpiImpl(
     private val accessManagementRepository: UserAccessManagementRepository
 ) : AuthorityRepositorySpi {
     companion object {
-        private val DEFAULT_NAME_LIST = listOf("학생")
+        private val DEFAULT_NAME_LIST = listOf("student")
     }
 
     override suspend fun getBaseUserAuthorities(): List<Authority> {
