@@ -5,9 +5,11 @@ import com.xquare.authorization.domain.authority.Authority
 import com.xquare.authorization.domain.authority.spi.AuthorityRepositorySpi
 import com.xquare.authorization.domain.authority.useraccessmanagement.UserAccessManagement
 import com.xquare.authorization.domain.authority.useraccessmanagement.api.AccessManagementService
+import com.xquare.authorization.domain.authority.useraccessmanagement.api.dtos.AuthorityByTypeResponse
+import com.xquare.authorization.domain.authority.useraccessmanagement.api.dtos.AuthorityListByTypeResponse
 import com.xquare.authorization.domain.authority.useraccessmanagement.api.dtos.AuthorityListResponse
 import com.xquare.authorization.domain.authority.useraccessmanagement.api.dtos.AuthorityResponse
-import java.util.UUID
+import java.util.*
 
 @SagaStep
 class AccessManagementService(
@@ -37,6 +39,21 @@ class AccessManagementService(
     override suspend fun deleteBaseAccessManagement(userId: UUID) {
         val basicAuthorities = authorityRepositorySpi.getBaseUserAuthorities()
 
+    }
+
+    override suspend fun getUserAuthorityListByType(userId: UUID, type: String): AuthorityListByTypeResponse {
+        val authorityList = authorityRepositorySpi.getUserAuthorityByType(userId, type)
+        return authorityList.toAuthorityListByTypeResponse()
+    }
+
+    private fun List<Authority>.toAuthorityListByTypeResponse(): AuthorityListByTypeResponse {
+        val authorityListByType = this.map {
+            AuthorityByTypeResponse(
+                authorityName = it.name
+            )
+        }
+
+        return AuthorityListByTypeResponse(authorityListByType)
     }
 
     override suspend fun getUserAuthorityList(userId: UUID): AuthorityListResponse {
