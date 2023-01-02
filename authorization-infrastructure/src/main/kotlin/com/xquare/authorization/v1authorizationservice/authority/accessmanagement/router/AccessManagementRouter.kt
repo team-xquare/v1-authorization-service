@@ -101,7 +101,8 @@ class AccessManagementRouter(
                     )
                 ],
             )
-        ),RouterOperation(
+        ),
+        RouterOperation(
             path = "/authorities/{userId}/{type}",
             method = [RequestMethod.GET],
             produces = [MediaType.APPLICATION_JSON_VALUE],
