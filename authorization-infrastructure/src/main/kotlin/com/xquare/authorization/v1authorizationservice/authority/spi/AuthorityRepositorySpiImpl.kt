@@ -7,15 +7,10 @@ import com.xquare.authorization.v1authorizationservice.authority.accessmanagemen
 import com.xquare.authorization.v1authorizationservice.authority.accessmanagement.repositories.UserAccessManagementRepository
 import com.xquare.authorization.v1authorizationservice.authority.mapper.AuthorityDomainMapper
 import com.xquare.authorization.v1authorizationservice.authority.repositories.AuthorityRepository
-import java.util.LinkedList
-import java.util.UUID
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.toCollection
-import kotlinx.coroutines.reactor.awaitSingle
-import org.springframework.data.r2dbc.core.R2dbcEntityOperations
 import org.springframework.stereotype.Repository
 import org.springframework.transaction.annotation.Transactional
+import java.util.*
 
 @Repository
 class AuthorityRepositorySpiImpl(
@@ -35,6 +30,11 @@ class AuthorityRepositorySpiImpl(
 
     override suspend fun getUserAuthority(userId: UUID): List<Authority> {
         val authorityEntities = authorityRepository.findAllByUserId(userId)
+        return authorityEntities.map { authorityDomainMapper.authorityEntityToDomain(it) }
+    }
+
+    override suspend fun getUserAuthorityByType(userId: UUID, type: String): List<Authority> {
+        val authorityEntities = authorityRepository.findAllByUserIdAndType(userId, type)
         return authorityEntities.map { authorityDomainMapper.authorityEntityToDomain(it) }
     }
 

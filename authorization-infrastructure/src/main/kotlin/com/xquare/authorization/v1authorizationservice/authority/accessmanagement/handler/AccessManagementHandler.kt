@@ -30,6 +30,13 @@ class AccessManagementHandler(
         return ServerResponse.ok().bodyValueAndAwait(authorityList)
     }
 
+    suspend fun handleGetAuthorityListByType(serverRequest: ServerRequest): ServerResponse{
+        val userId = UUID.fromString(serverRequest.pathVariable("userId"))
+        val type = serverRequest.pathVariable("type")
+        val authorityList = accessManagementService.getUserAuthorityListByType(userId, type)
+        return ServerResponse.ok().bodyValueAndAwait(authorityList)
+    }
+
     suspend fun handleDeleteBaseAccessManagement(serverRequest: ServerRequest): ServerResponse {
         val userId = UUID.fromString(serverRequest.pathVariable("userId"))
         accessManagementService.deleteBaseAccessManagement(userId)
