@@ -60,6 +60,7 @@ jobs:
             DB_NAME=${{secrets.DB_NAME_PROD}}
             DB_PASSWORD=${{secrets.DB_PASSWORD_PROD}}
             DB_USERNAME=${{secrets.DB_USERNAME_PROD}}
+
       - name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v1
         with:
