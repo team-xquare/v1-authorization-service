@@ -34,6 +34,7 @@ jobs:
             build
             --no-daemon
             -x test
+
       - name: Login to ECR
         id: ecr
         uses: elgohr/ecr-login-action@master
