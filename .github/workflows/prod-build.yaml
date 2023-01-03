@@ -56,12 +56,10 @@ jobs:
           registry: ${{ steps.ecr.outputs.registry }}
           tags: ${{ steps.get_version.outputs.VERSION }}
           buildargs: |
-            DBMS=${{secrets.DBMS_PROD}}
-            DB_HOST=${{secrets.DB_HOST_PROD}}
-            DB_PORT=${{secrets.DB_PORT_PROD}}
-            DB_NAME=${{secrets.DB_NAME_PROD}}
-            DB_PASSWORD=${{secrets.DB_PASSWORD_PROD}}
-            DB_USERNAME=${{secrets.DB_USERNAME_PROD}}
+            PROFILE=prod
+            CLOUD_CONFIG_USERNAME=${{ secrets.CLOUD_CONFIG_USERNAME }}
+            CLOUD_CONFIG_PASSWORD=${{ secrets.CLOUD_CONFIG_PASSWORD }}
+
       - name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v1
         with:

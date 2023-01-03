@@ -1,8 +1,19 @@
 spring:
+  application:
+    name: v1-authority-service
+  profiles:
+    active: ${PROFILE}
+  config:
+    import: optional:configserver:https://api.xquare.app/cloud-config/
+  cloud:
+    config:
+      username: ${CLOUD_CONFIG_USERNAME}
+      password: ${CLOUD_CONFIG_PASSWORD}
+
   r2dbc:
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
-    url: r2dbc:${DBMS}://${DB_HOST}:${DB_PORT}/${DB_NAME}?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Seoul
+    username: ${db.username}
+    password: ${db.password}
+    url: r2dbc:${db.dbms}://${db.host}:${db.port}/${db.name}?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Seoul
 
   jackson:
     property-naming-strategy: SNAKE_CASE

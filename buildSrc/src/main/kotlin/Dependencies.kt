@@ -22,4 +22,5 @@ object Dependencies {
     const val MAPSTRUCT_APT = "org.mapstruct:mapstruct-processor:${DependencyVersions.MAPSTRUCT_VERSION}"
     const val OPEN_API_UI = "org.springdoc:springdoc-openapi-webflux-ui:${DependencyVersions.OPEN_API_VERSION}"
     const val OPEN_API_CORE = "org.springdoc:springdoc-openapi-webflux-core:${DependencyVersions.OPEN_API_VERSION}"
+    const val CLOUD_CONFIG = "org.springframework.cloud:spring-cloud-config-client"
 }

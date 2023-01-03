@@ -29,6 +29,7 @@ dependencies {
     kapt(Dependencies.CONFIGURATION_PROCESSOR)
     implementation(Dependencies.OPEN_API_UI)
     implementation(Dependencies.OPEN_API_CORE)
+    implementation(Dependencies.CLOUD_CONFIG)
     testImplementation(Dependencies.SPRING_BOOT_TEST)
     testImplementation(Dependencies.COROUTINE_TEST)
     testImplementation(Dependencies.H2)
