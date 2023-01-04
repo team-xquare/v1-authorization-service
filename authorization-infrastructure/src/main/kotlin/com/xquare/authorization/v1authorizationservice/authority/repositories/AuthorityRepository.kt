@@ -11,7 +11,7 @@ interface AuthorityRepository : CoroutineCrudRepository<AuthorityEntity, UUID> {
 
     @Query(
         """
-        select tbl_authority.id, tbl_authority.name, tbl_authority.description
+        select *
         from tbl_authority
         inner join tbl_access_management_user
             on tbl_access_management_user.authority_id = tbl_authority.id
@@ -22,7 +22,7 @@ interface AuthorityRepository : CoroutineCrudRepository<AuthorityEntity, UUID> {
 
     @Query(
         """
-        select tbl_authority.id, tbl_authority.name, tbl_authority.description
+        select *
         from tbl_authority
         inner join tbl_access_management_user
             on tbl_access_management_user.authority_id = tbl_authority.id
