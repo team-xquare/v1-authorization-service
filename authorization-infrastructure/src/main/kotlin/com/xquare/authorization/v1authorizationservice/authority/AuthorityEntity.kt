@@ -11,6 +11,5 @@ class AuthorityEntity(
     val id: UUID = UUID.randomUUID(),
     val name: String,
     val description: String,
-    val version: Int,
     val type: String
 ) : BaseR2DBCEntity()
