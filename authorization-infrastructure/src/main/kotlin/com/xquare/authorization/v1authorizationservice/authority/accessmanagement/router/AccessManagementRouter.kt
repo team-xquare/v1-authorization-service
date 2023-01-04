@@ -103,7 +103,7 @@ class AccessManagementRouter(
             )
         ),
         RouterOperation(
-            path = "/authorities/{userId}/{type}",
+            path = "/authorities/access-management/{userId}/{type}",
             method = [RequestMethod.GET],
             produces = [MediaType.APPLICATION_JSON_VALUE],
             consumes = [MediaType.APPLICATION_JSON_VALUE],
@@ -138,14 +138,7 @@ class AccessManagementRouter(
                                     ExampleObject(
                                         value = """
                                         {
-                                            "authorities": [
-                                                {
-                                                    "authorityName": "ROLE_USER"
-                                                },
-                                                {
-                                                    "authorityName": "ROLE_ADMIN"
-                                                }
-                                            ]
+                                            "authorities": [ROLE_USER]
                                         }
                                     """
                                     )
