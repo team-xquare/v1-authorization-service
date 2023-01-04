@@ -5,7 +5,6 @@ import com.xquare.authorization.domain.authority.Authority
 import com.xquare.authorization.domain.authority.spi.AuthorityRepositorySpi
 import com.xquare.authorization.domain.authority.useraccessmanagement.UserAccessManagement
 import com.xquare.authorization.domain.authority.useraccessmanagement.api.AccessManagementService
-import com.xquare.authorization.domain.authority.useraccessmanagement.api.dtos.AuthorityByTypeResponse
 import com.xquare.authorization.domain.authority.useraccessmanagement.api.dtos.AuthorityListByTypeResponse
 import com.xquare.authorization.domain.authority.useraccessmanagement.api.dtos.AuthorityListResponse
 import com.xquare.authorization.domain.authority.useraccessmanagement.api.dtos.AuthorityResponse
@@ -47,12 +46,7 @@ class AccessManagementService(
     }
 
     private fun List<Authority>.toAuthorityListByTypeResponse(): AuthorityListByTypeResponse {
-        val authorityListByType = this.map {
-            AuthorityByTypeResponse(
-                authorityName = it.name
-            )
-        }
-
+        val authorityListByType = this.map { it.name }
         return AuthorityListByTypeResponse(authorityListByType)
     }
 
