@@ -137,10 +137,18 @@ class AccessManagementRouter(
                                 examples = [
                                     ExampleObject(
                                         value = """
-                                        {
-                                            "authorities": [ROLE_USER]
-                                        }
-                                    """
+                                        "authorities": [
+                                                    {
+                                                            "authority_id" : "UUID",
+                                                            "authority_name" : "SDT"
+                                                    },
+                                                    {
+                                                            "authority_id" : "UUID",
+                                                            "authority_name" : "DDT"
+                                                    },
+                                                    ]
+                                            }
+                                            """
                                     )
                                 ]
                             )
