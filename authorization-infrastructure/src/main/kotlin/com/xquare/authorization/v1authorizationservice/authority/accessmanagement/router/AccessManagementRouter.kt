@@ -137,18 +137,19 @@ class AccessManagementRouter(
                                 examples = [
                                     ExampleObject(
                                         value = """
-                                        "authorities": [
-                                                    {
-                                                            "authority_id" : "UUID",
-                                                            "authority_name" : "SDT"
-                                                    },
-                                                    {
-                                                            "authority_id" : "UUID",
-                                                            "authority_name" : "DDT"
-                                                    },
-                                                    ]
-                                            }
-                                            """
+                                        {
+                                            "authorities": [
+                                                {
+                                                    "authorityId": "asdfasdf-asdfasdf",
+                                                    "authorityName": "STD"
+                                                },
+                                                {
+                                                    "authorityId": "asdfasdf-asdfasdf",
+                                                    "authorityName": "DDT"
+                                                }
+                                            ]
+                                        }
+                                    """
                                     )
                                 ]
                             )
