@@ -84,12 +84,14 @@ class AccessManagementRouter(
                                         {
                                             "authorities": [
                                                 {
-                                                    "authorityId": "1",
-                                                    "authorityName": "ROLE_USER"
+                                                    "authorityId": "asdfasdf-asdfasdf",
+                                                    "authorityName": "SDT",
+                                                    "description": "학생 권한입니다."
                                                 },
                                                 {
-                                                    "authorityId": "2",
-                                                    "authorityName": "ROLE_ADMIN"
+                                                    "authorityId": "asdfasdf-asdfasdf",
+                                                    "authorityName": "STA",
+                                                    "description": "학생 자치회 권한입니다."
                                                 }
                                             ]
                                         }
