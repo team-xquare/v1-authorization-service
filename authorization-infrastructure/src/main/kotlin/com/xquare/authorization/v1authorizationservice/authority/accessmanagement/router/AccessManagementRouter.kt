@@ -143,11 +143,11 @@ class AccessManagementRouter(
                                             "authorities": [
                                                 {
                                                     "authorityId": "asdfasdf-asdfasdf",
-                                                    "authorityName": "STD"
+                                                    "authorityName": "학생회"
                                                 },
                                                 {
                                                     "authorityId": "asdfasdf-asdfasdf",
-                                                    "authorityName": "DDT"
+                                                    "authorityName": "동아리장"
                                                 }
                                             ]
                                         }
