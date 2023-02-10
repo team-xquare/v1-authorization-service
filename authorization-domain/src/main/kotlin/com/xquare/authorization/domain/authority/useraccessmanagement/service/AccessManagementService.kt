@@ -49,7 +49,7 @@ class AccessManagementService(
     private fun List<Authority>.toAuthorityListByTypeResponse(): AuthorityListByTypeResponse {
         val authorityListByType = this.map {
             AuthorityByTypeResponse(
-                authorityName = it.name,
+                authorityName = it.description,
                 authorityId = it.id
             )
         }
