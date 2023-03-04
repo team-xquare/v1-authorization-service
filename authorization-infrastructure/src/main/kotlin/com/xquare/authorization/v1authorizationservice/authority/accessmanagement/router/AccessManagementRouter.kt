@@ -105,23 +105,16 @@ class AccessManagementRouter(
             )
         ),
         RouterOperation(
-            path = "/authorities/access-management/{userId}/{type}",
+            path = "/authorities/access-management/type/{type}",
             method = [RequestMethod.GET],
             produces = [MediaType.APPLICATION_JSON_VALUE],
             consumes = [MediaType.APPLICATION_JSON_VALUE],
-            params = ["userId", "type"],
+            params = ["type"],
             operation = Operation(
                 operationId = "getUserAuthorityByTypeList",
                 summary = "Get user authority list",
                 description = "사용자가 가지고 있는 권한을 조회합니다.",
                 parameters = [
-                    Parameter(
-                        name = "userId",
-                        description = "사용자 아이디",
-                        `in` = ParameterIn.PATH,
-                        allowEmptyValue = false,
-                        required = true
-                    ),
                     Parameter(
                         name = "type",
                         description = "권한의 종류",
@@ -188,7 +181,7 @@ class AccessManagementRouter(
         "/authorities/access-management".nest {
             POST("/basic", accessManagementHandler::createUserBaseAccessManagement)
             GET("/{userId}", accessManagementHandler::handleGetAuthorityList)
-            GET("/{userId}/{type}", accessManagementHandler::handleGetAuthorityListByType)
+            GET("/type/{type}", accessManagementHandler::handleGetAuthorityListByType)
             DELETE("/basic/{userId}", accessManagementHandler::handleDeleteBaseAccessManagement)
         }
     }
