@@ -31,7 +31,7 @@ class AccessManagementHandler(
     }
 
     suspend fun handleGetAuthorityListByType(serverRequest: ServerRequest): ServerResponse{
-        val userId = UUID.fromString(serverRequest.pathVariable("userId"))
+        val userId = UUID.fromString(serverRequest.headers().firstHeader("Request-User-Id"))
         val type = serverRequest.pathVariable("type")
         val authorityList = accessManagementService.getUserAuthorityListByType(userId, type)
         return ServerResponse.ok().bodyValueAndAwait(authorityList)
