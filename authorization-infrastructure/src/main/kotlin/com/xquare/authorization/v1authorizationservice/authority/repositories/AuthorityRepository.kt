@@ -30,5 +30,6 @@ interface AuthorityRepository : CoroutineCrudRepository<AuthorityEntity, UUID> {
         """
     )
     suspend fun findAllByUserIdAndType(
-        @Param("userId") userId: UUID, @Param("type") type: String): List<AuthorityEntity>
+        @Param("userId") userId: UUID, @Param("type") type: String
+    ): List<AuthorityEntity>
 }
