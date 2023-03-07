@@ -20,7 +20,7 @@ class AuthorityRepositorySpiImpl(
     private val accessManagementRepository: UserAccessManagementRepository
 ) : AuthorityRepositorySpi {
     companion object {
-        private val DEFAULT_NAME_LIST = listOf("STU")
+        private val DEFAULT_NAME_LIST = listOf("STU", "UKN")
     }
 
     override suspend fun getBaseUserAuthorities(): List<Authority> {
