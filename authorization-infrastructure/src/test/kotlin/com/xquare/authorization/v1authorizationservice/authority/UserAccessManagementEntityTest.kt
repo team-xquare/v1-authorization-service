@@ -63,6 +63,6 @@ internal class UserAccessManagementEntityTest(
         AuthorityEntity(
             name = "test1",
             description = "testest~",
-            id = UUID.randomUUID()
+            type = "test"
         )
 }
