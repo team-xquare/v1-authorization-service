@@ -50,7 +50,8 @@ class AccessManagementService(
         val authorityListByType = this.map {
             AuthorityByTypeResponse(
                 authorityName = it.description,
-                authorityId = it.id
+                authorityId = it.id,
+                authority = it.name
             )
         }
         return AuthorityListByTypeResponse(authorityListByType)

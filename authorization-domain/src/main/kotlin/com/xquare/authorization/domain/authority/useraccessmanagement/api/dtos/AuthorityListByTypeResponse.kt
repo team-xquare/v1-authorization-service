@@ -8,5 +8,6 @@ data class AuthorityListByTypeResponse(
 
 data class AuthorityByTypeResponse(
     val authorityId: UUID,
-    val authorityName: String
+    val authorityName: String,
+    val authority: String
 )
