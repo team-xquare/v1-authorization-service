@@ -47,8 +47,8 @@ class AccessManagementService(
     override suspend fun saveAccessManagement(userId: UUID, authorityNames: MutableList<String>) {
         val user = userRepositorySpi.getUser(userId)
         addTestAuthorityForTestUser(user, authorityNames)
-        val userAuthorities = authorityRepositorySpi.getNotUserAuthorities(userId, authorityNames)
-        val userAccessManagementList = userAuthorities.map { it.toUserAccessManagement(user.id) }
+        val notUserAuthorities = authorityRepositorySpi.getNotUserAuthorities(userId, authorityNames)
+        val userAccessManagementList = notUserAuthorities.map { it.toUserAccessManagement(user.id) }
 
         authorityRepositorySpi.saveAllUserAccessManagement(userAccessManagementList)
     }
