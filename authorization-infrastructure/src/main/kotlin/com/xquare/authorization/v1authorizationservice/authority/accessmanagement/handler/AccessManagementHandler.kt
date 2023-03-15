@@ -1,9 +1,9 @@
 package com.xquare.authorization.v1authorizationservice.authority.accessmanagement.handler
 
 import com.xquare.authorization.domain.authority.useraccessmanagement.api.AccessManagementService
+import com.xquare.authorization.domain.authority.useraccessmanagement.api.dtos.AuthorityListByTypeResponse
+import com.xquare.authorization.v1authorizationservice.configuration.validate.BadRequestException
 import com.xquare.authorization.v1authorizationservice.configuration.validate.RequestBodyValidator
-import java.net.URI
-import java.util.UUID
 import kotlinx.coroutines.reactor.awaitSingle
 import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.server.ServerRequest
@@ -11,6 +11,9 @@ import org.springframework.web.reactive.function.server.ServerResponse
 import org.springframework.web.reactive.function.server.bodyToMono
 import org.springframework.web.reactive.function.server.bodyValueAndAwait
 import org.springframework.web.reactive.function.server.buildAndAwait
+import org.springframework.web.reactive.function.server.queryParamOrNull
+import java.net.URI
+import java.util.*
 
 @Component
 class AccessManagementHandler(
@@ -30,10 +33,10 @@ class AccessManagementHandler(
         return ServerResponse.ok().bodyValueAndAwait(authorityList)
     }
 
-    suspend fun handleGetAuthorityListByType(serverRequest: ServerRequest): ServerResponse{
-        val userId = serverRequest.headers().firstHeader("Request-User-Id")
-        val type = serverRequest.pathVariable("type")
-        val authorityList = accessManagementService.getUserAuthorityListByType(UUID.fromString(userId), type)
+    suspend fun handleGetAuthorityListByType(serverRequest: ServerRequest): ServerResponse {
+        val userId = UUID.fromString(serverRequest.pathVariable("userId"))
+        val type = serverRequest.queryParamOrNull("type") ?: throw BadRequestException("Type Not Found")
+        val authorityList = accessManagementService.getUserAuthorityListByType(userId, type)
         return ServerResponse.ok().bodyValueAndAwait(authorityList)
     }
 

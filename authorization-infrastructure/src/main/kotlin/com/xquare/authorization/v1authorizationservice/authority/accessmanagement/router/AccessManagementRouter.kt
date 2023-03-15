@@ -181,7 +181,7 @@ class AccessManagementRouter(
         "/authorities/access-management".nest {
             POST("/basic", accessManagementHandler::createUserBaseAccessManagement)
             GET("/{userId}", accessManagementHandler::handleGetAuthorityList)
-            GET("/type/{type}", accessManagementHandler::handleGetAuthorityListByType)
+            GET("/type/{userId}", accessManagementHandler::handleGetAuthorityListByType)
             DELETE("/basic/{userId}", accessManagementHandler::handleDeleteBaseAccessManagement)
         }
     }
