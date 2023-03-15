@@ -44,12 +44,10 @@ class AccessManagementService(
 
     }
 
-    override suspend fun saveAccessManagement(userId: UUID, authorities: MutableList<String>) {
+    override suspend fun saveAccessManagement(userId: UUID, authorityNames: MutableList<String>) {
         val user = userRepositorySpi.getUser(userId)
-        if (isTest(user) && !authorities.contains("TEST")) {
-            authorities.add("TEST")
-        }
-        val userAuthorities = authorityRepositorySpi.getNotUserAuthorities(userId, authorities)
+        addTestAuthorityForTestUser(user, authorityNames)
+        val userAuthorities = authorityRepositorySpi.getNotUserAuthorities(userId, authorityNames)
         val userAccessManagementList = userAuthorities.map { it.toUserAccessManagement(user.id) }
 
         authorityRepositorySpi.saveAllUserAccessManagement(userAccessManagementList)
@@ -88,5 +86,10 @@ class AccessManagementService(
         return AuthorityListResponse(authorityResponseList)
     }
 
-    private fun isTest(user: User) = user.name == "테스트"
+    private fun addTestAuthorityForTestUser(user: User, authorities: MutableList<String>): List<String> {
+        if (user.name == "테스트" && !authorities.contains("TEST")) {
+            authorities.add("TEST")
+        }
+        return authorities
+    }
 }
