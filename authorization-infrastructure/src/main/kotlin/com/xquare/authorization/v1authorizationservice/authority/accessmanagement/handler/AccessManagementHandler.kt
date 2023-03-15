@@ -1,7 +1,6 @@
 package com.xquare.authorization.v1authorizationservice.authority.accessmanagement.handler
 
 import com.xquare.authorization.domain.authority.useraccessmanagement.api.AccessManagementService
-import com.xquare.authorization.domain.authority.useraccessmanagement.api.dtos.AuthorityListByTypeResponse
 import com.xquare.authorization.v1authorizationservice.configuration.validate.BadRequestException
 import com.xquare.authorization.v1authorizationservice.configuration.validate.RequestBodyValidator
 import kotlinx.coroutines.reactor.awaitSingle
@@ -25,6 +24,13 @@ class AccessManagementHandler(
         requestBodyValidator.validate(request)
         accessManagementService.saveBaseAccessManagement(request.userId)
         return ServerResponse.created(URI.create("")).buildAndAwait()
+    }
+
+    suspend fun createUserAccessManagement(serverRequest: ServerRequest): ServerResponse {
+        val request = serverRequest.bodyToMono<UserAuthorityRequest>().awaitSingle()
+        requestBodyValidator.validate(request)
+        accessManagementService.saveAccessManagement(request.userId, request.authorities)
+        return ServerResponse.created(URI("/authorities/access-management")).buildAndAwait()
     }
 
     suspend fun handleGetAuthorityList(serverRequest: ServerRequest): ServerResponse {

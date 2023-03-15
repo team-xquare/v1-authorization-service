@@ -9,11 +9,14 @@ import com.xquare.authorization.domain.authority.useraccessmanagement.api.dtos.A
 import com.xquare.authorization.domain.authority.useraccessmanagement.api.dtos.AuthorityListByTypeResponse
 import com.xquare.authorization.domain.authority.useraccessmanagement.api.dtos.AuthorityListResponse
 import com.xquare.authorization.domain.authority.useraccessmanagement.api.dtos.AuthorityResponse
+import com.xquare.authorization.domain.user.User
+import com.xquare.authorization.domain.user.spi.UserRepositorySpi
 import java.util.*
 
 @SagaStep
 class AccessManagementService(
-    private val authorityRepositorySpi: AuthorityRepositorySpi
+    private val authorityRepositorySpi: AuthorityRepositorySpi,
+    private val userRepositorySpi: UserRepositorySpi
 ) : AccessManagementService {
 
     override suspend fun saveBaseAccessManagement(userId: UUID) {
@@ -39,6 +42,20 @@ class AccessManagementService(
     override suspend fun deleteBaseAccessManagement(userId: UUID) {
         val basicAuthorities = authorityRepositorySpi.getBaseUserAuthorities()
 
+    }
+
+    override suspend fun saveAccessManagement(userId: UUID, authorities: MutableList<String>) {
+        val user = userRepositorySpi.getUser(userId)
+        if (isTest(user) && !authorities.contains("TEST")) {
+            authorities.add("TEST")
+        }
+        val userOwnAccessManagementMap = authorityRepositorySpi.getUserAuthority(user.id).associateBy { it.id }
+        val userAuthorities = authorityRepositorySpi.getUserAuthorities(authorities)
+        val userAccessManagementList = userAuthorities
+            .filterAlreadyUsersAuthority(userOwnAccessManagementMap)
+            .map { it.toUserAccessManagement(user.id) }
+
+        authorityRepositorySpi.saveAllUserAccessManagement(userAccessManagementList)
     }
 
     override suspend fun getUserAuthorityListByType(userId: UUID, type: String): AuthorityListByTypeResponse {
@@ -73,4 +90,6 @@ class AccessManagementService(
 
         return AuthorityListResponse(authorityResponseList)
     }
+
+    private fun isTest(user: User) = user.name == "테스트"
 }

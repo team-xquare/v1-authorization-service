@@ -180,6 +180,7 @@ class AccessManagementRouter(
     fun accessManagementRouters() = coRouter {
         "/authorities/access-management".nest {
             POST("/basic", accessManagementHandler::createUserBaseAccessManagement)
+            POST("", accessManagementHandler::createUserAccessManagement)
             GET("/{userId}", accessManagementHandler::handleGetAuthorityList)
             GET("/type/{userId}", accessManagementHandler::handleGetAuthorityListByType)
             DELETE("/basic/{userId}", accessManagementHandler::handleDeleteBaseAccessManagement)

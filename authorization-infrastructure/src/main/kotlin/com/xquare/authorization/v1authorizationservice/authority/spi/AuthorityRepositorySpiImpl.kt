@@ -28,6 +28,12 @@ class AuthorityRepositorySpiImpl(
         return authorityEntities.map { authorityDomainMapper.authorityEntityToDomain(it) }
     }
 
+    override suspend fun getUserAuthorities(authorities: List<String>): List<Authority> {
+        val authorityEntities = authorityRepository.findAuthorityEntity()
+            .filter { authorities.contains(it.name) }
+        return authorityEntities.map { authorityDomainMapper.authorityEntityToDomain(it) }
+    }
+
     override suspend fun getUserAuthority(userId: UUID): List<Authority> {
         val authorityEntities = authorityRepository.findAllByUserId(userId)
         return authorityEntities.map { authorityDomainMapper.authorityEntityToDomain(it) }
