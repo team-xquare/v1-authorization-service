@@ -35,9 +35,15 @@ interface AuthorityRepository : CoroutineCrudRepository<AuthorityEntity, UUID> {
 
     @Query(
         """
-            select *
-            from tbl_authority
+            SELECT *
+            FROM tbl_authority
+            WHERE name IN (:authorityNames)
+              AND id NOT IN (
+                             SELECT authority_id
+                             FROM tbl_access_management_user
+                             WHERE user_id = :userId
+                            )
         """
     )
-    suspend fun findAuthorityEntity(): List<AuthorityEntity>
+    suspend fun findNotUserByAuthorityNames(userId: UUID, authorityNames: List<String>): List<AuthorityEntity>
 }

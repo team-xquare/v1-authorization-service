@@ -49,11 +49,8 @@ class AccessManagementService(
         if (isTest(user) && !authorities.contains("TEST")) {
             authorities.add("TEST")
         }
-        val userOwnAccessManagementMap = authorityRepositorySpi.getUserAuthority(user.id).associateBy { it.id }
-        val userAuthorities = authorityRepositorySpi.getUserAuthorities(authorities)
-        val userAccessManagementList = userAuthorities
-            .filterAlreadyUsersAuthority(userOwnAccessManagementMap)
-            .map { it.toUserAccessManagement(user.id) }
+        val userAuthorities = authorityRepositorySpi.getNotUserAuthorities(userId, authorities)
+        val userAccessManagementList = userAuthorities.map { it.toUserAccessManagement(user.id) }
 
         authorityRepositorySpi.saveAllUserAccessManagement(userAccessManagementList)
     }
