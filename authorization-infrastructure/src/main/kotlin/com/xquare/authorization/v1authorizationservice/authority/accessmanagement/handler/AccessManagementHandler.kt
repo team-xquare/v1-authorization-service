@@ -29,7 +29,7 @@ class AccessManagementHandler(
     suspend fun createUserAccessManagement(serverRequest: ServerRequest): ServerResponse {
         val request = serverRequest.bodyToMono<UserAuthorityRequest>().awaitSingle()
         requestBodyValidator.validate(request)
-        accessManagementService.saveAccessManagement(request.userId, request.authorities)
+        accessManagementService.saveAccessManagement(request.userId, request.authorityNames)
         return ServerResponse.created(URI("/authorities/access-management")).buildAndAwait()
     }
 

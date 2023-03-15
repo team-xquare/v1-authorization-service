@@ -8,5 +8,5 @@ class UserAuthorityRequest(
     val userId: UUID,
 
     @field:NotNull
-    val authorities: MutableList<String>
+    val authorityNames: MutableList<String>
 )
