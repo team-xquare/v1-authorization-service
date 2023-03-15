@@ -9,11 +9,14 @@ import com.xquare.authorization.domain.authority.useraccessmanagement.api.dtos.A
 import com.xquare.authorization.domain.authority.useraccessmanagement.api.dtos.AuthorityListByTypeResponse
 import com.xquare.authorization.domain.authority.useraccessmanagement.api.dtos.AuthorityListResponse
 import com.xquare.authorization.domain.authority.useraccessmanagement.api.dtos.AuthorityResponse
+import com.xquare.authorization.domain.user.User
+import com.xquare.authorization.domain.user.spi.UserRepositorySpi
 import java.util.*
 
 @SagaStep
 class AccessManagementService(
-    private val authorityRepositorySpi: AuthorityRepositorySpi
+    private val authorityRepositorySpi: AuthorityRepositorySpi,
+    private val userRepositorySpi: UserRepositorySpi
 ) : AccessManagementService {
 
     override suspend fun saveBaseAccessManagement(userId: UUID) {
@@ -39,6 +42,15 @@ class AccessManagementService(
     override suspend fun deleteBaseAccessManagement(userId: UUID) {
         val basicAuthorities = authorityRepositorySpi.getBaseUserAuthorities()
 
+    }
+
+    override suspend fun saveAccessManagement(userId: UUID, authorityNames: MutableList<String>) {
+        val user = userRepositorySpi.getUser(userId)
+        addTestAuthorityForTestUser(user, authorityNames)
+        val notUserAuthorities = authorityRepositorySpi.getNotUserAuthorities(userId, authorityNames)
+        val userAccessManagementList = notUserAuthorities.map { it.toUserAccessManagement(user.id) }
+
+        authorityRepositorySpi.saveAllUserAccessManagement(userAccessManagementList)
     }
 
     override suspend fun getUserAuthorityListByType(userId: UUID, type: String): AuthorityListByTypeResponse {
@@ -72,5 +84,12 @@ class AccessManagementService(
         }
 
         return AuthorityListResponse(authorityResponseList)
+    }
+
+    private fun addTestAuthorityForTestUser(user: User, authorities: MutableList<String>): List<String> {
+        if (user.name == "테스트" && !authorities.contains("TEST")) {
+            authorities.add("TEST")
+        }
+        return authorities
     }
 }

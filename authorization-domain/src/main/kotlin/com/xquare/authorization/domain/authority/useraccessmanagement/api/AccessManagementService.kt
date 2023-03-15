@@ -9,4 +9,5 @@ interface AccessManagementService {
     suspend fun getUserAuthorityListByType(userId: UUID, type: String): AuthorityListByTypeResponse
     suspend fun saveBaseAccessManagement(userId: UUID)
     suspend fun deleteBaseAccessManagement(userId: UUID)
+    suspend fun saveAccessManagement(userId: UUID, authorityNames: MutableList<String>)
 }
