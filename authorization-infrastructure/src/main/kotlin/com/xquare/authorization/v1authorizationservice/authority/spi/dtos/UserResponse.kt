@@ -9,7 +9,7 @@ data class UserResponse(
     val birthDay: LocalDate,
     val grade: Int,
     val classNum: Int,
-    val profileFileName: String,
+    val profileFileName: String?,
     val password: String,
     val accountId: String,
     val num: Int
