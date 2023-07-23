@@ -1,0 +1,4 @@
+config:
+  name: authority
+  prefix: /authorities
+  service_type: be
