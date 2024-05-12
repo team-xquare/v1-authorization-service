@@ -13,3 +13,5 @@ ENV CLOUD_CONFIG_IMPORT_URL ${CLOUD_CONFIG_IMPORT_URL}
 
 ADD authorization-infrastructure/build/libs/*.jar app.jar
 ENTRYPOINT ["java", "-jar", "/app.jar"]
+
+
